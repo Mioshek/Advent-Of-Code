@@ -28,6 +28,21 @@ fn main() {
         }
     }
     println!("{:?}", counted_calories_vec.iter().max());
+    let mut sum_arr:[u32;3] = [0,0,0];
+    for mut elf_cals in counted_calories_vec{
+        for i in 0..3{
+            if elf_cals > sum_arr[i]{
+                let temp = sum_arr[i];
+                sum_arr[i] = elf_cals;
+                elf_cals = temp;
+            }
+            else {
+                continue;
+            }
+        }
+    }
+    let sum:u32 = sum_arr.iter().sum();
+    println!("{:?}", sum);
     match start.elapsed() {
         Ok(elapsed) => {
             // it prints '2'
