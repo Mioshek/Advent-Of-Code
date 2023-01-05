@@ -10,7 +10,6 @@ fn read_lines(filename: &str) -> File {
     return file;
 }
 
-
 fn main() {
     let start = SystemTime::now();
     let mut counted_calories_vec :Vec<u32> =  Vec::new();
