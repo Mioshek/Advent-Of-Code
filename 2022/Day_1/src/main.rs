@@ -44,11 +44,9 @@ fn main() {
     println!("{:?}", sum);
     match start.elapsed() {
         Ok(elapsed) => {
-            // it prints '2'
             println!("{}/1000000μs", elapsed.as_micros());
         }
         Err(e) => {
-            // an error occurred!
             println!("Error: {e:?}");
         }
     }
