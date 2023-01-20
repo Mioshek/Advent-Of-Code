@@ -13,7 +13,7 @@ enum Result {
     Draw,
 }
 
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 enum Hand {
     Rock,
     Paper,
@@ -21,6 +21,7 @@ enum Hand {
 }
 trait Move {
     fn get_winning(&self) -> Self;
+    fn get_loosing(&self) -> Self;
 }
 
 impl Move for Hand {
@@ -29,6 +30,14 @@ impl Move for Hand {
             Rock => Scissors,
             Paper => Rock,
             Scissors => Paper,
+        }
+    }
+
+    fn get_loosing(&self) -> Self {
+        match *self{
+            Rock => Paper,
+            Paper => Scissors,
+            Scissors => Rock,
         }
     }
 }
@@ -65,28 +74,49 @@ fn return_hand(mov:char) -> Hand{
 fn main() {
     let start = SystemTime::now();
     let lines = BufReader::new(read_lines("Day2.txt")).lines();
-    let mut score : u16 = 0;
+    let mut score1 : u16 = 0;
+    let mut score2: u16 = 0;
 
     for line in lines{
         let input: Vec<char> = line.unwrap().chars().collect();
         let elf = return_hand(input[0]);
-        let me = return_hand(input[2]);
-        let result = play(me, elf);
+        let me1 = return_hand(input[2]);
+        let result2: char = input[2];
+        let result1 = play(me1, elf);
+        let me2: Hand;
 
-        match result {
-            Win => score+=6,
-            Draw => score += 3,
-            _    => score += 0,
+        match result1 {
+            Win => score1+=6,
+            Draw => score1 += 3,
+            _    => score1 += 0,
         }
 
-        match me {
-            Rock    => score+=1,
-            Paper   => score+=2,
-            _       => score+=3,
+        match me1 {
+            Rock    => score1+=1,
+            Paper   => score1+=2,
+            _       => score1+=3,
         }
-
+        
+        match result2{
+            'X' => me2 = elf.get_winning(),
+            'Y' => me2 = elf,
+            _ => me2 = elf.get_loosing(),
+        }
+        match result2{
+            'X' => score2 +=0,
+            'Y' => score2 +=3,
+            _ => score2 +=6,
+        }
+        match me2{
+            Rock    => score2+=1,
+            Paper   => score2+=2,
+            _       => score2+=3,
+        }
     }
-    println!("{:?}", score);
+    println!("{:?}", score1);
+    println!("{:?}", score2);
+
+
     match start.elapsed() {
         Ok(elapsed) => {
             // it prints '2'
