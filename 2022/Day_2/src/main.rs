@@ -98,7 +98,7 @@ fn main() {
         }
         
         match result2{
-            'X' => me2 = elf.get_winning(),
+            'X' => me2 = elf.get_winning(), // todo cuz the order is inverted
             'Y' => me2 = elf,
             _ => me2 = elf.get_loosing(),
         }
