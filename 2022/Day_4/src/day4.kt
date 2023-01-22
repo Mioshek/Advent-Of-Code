@@ -19,19 +19,17 @@ fun solution(line: String): Int{
     else if (firstElf[0] <= secondElf[0] && firstElf[0] >= secondElf[1]){
         loopVal ++
     }
-    else if (firstElf[0] <= secondElf[1] && firstElf[1] >= secondElf[1]){
-        loopVal ++
-    }
 
     return loopVal
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val cpath = System.getProperty("user.dir") + "/2022/inputs/Day4.txt"
     var endVal1 = 0
     var endVal2 = 0
     val lines: List<String> = (readLines(cpath))
     val begin = System.nanoTime()
+
     for (line in lines){
         val result = solution(line)
         if (result ==2 ) {
@@ -41,7 +39,6 @@ fun main(args: Array<String>) {
         else if (result == 1){
             endVal2 ++
         }
-
     }
     println(endVal1)
     println(endVal2)
