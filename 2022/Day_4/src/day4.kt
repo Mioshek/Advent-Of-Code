@@ -3,10 +3,10 @@ fun solution(line: String): Int{
     var loopVal = 0
     val firstElf = rawInput[0].split("-").map { it.toInt() }.toTypedArray()
     val secondElf = rawInput[1].split("-").map { it.toInt() }.toTypedArray()
-    if (firstElf[0] >= secondElf[0] && firstElf[1] <= secondElf[1]){
+    if (firstElf[0] >= secondElf[0] && firstElf[1] <= secondElf[1]){ //break cuz both parts here will be true
         return 2
     }
-    else if (firstElf[0] <= secondElf[0] && firstElf[1] >= secondElf[1]){
+    else if (firstElf[0] <= secondElf[0] && firstElf[1] >= secondElf[1]){ //break cuz both parts here will be true
         return 2
     }
     //Part two explicitly
