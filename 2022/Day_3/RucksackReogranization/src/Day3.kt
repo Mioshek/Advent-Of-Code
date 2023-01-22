@@ -2,7 +2,7 @@ import java.io.File
 
 fun readLines(fileName: String) = File(fileName).useLines { it.toList() }
 
-fun partOne(line: String, alphabetArr: CharArray): Int {
+fun solution(line: String, alphabetArr: CharArray): Int {
     val strLen: Int = line.length
     val leftCompart = line.substring(0, strLen / 2)
     val rightCompart = line.substring(strLen / 2, strLen)
@@ -29,17 +29,17 @@ fun partTwo(linesArr: Array<String>, alphabetArr: CharArray): Int{
 }
 
 fun main() {
+    val cpath = System.getProperty("user.dir") + "/2022/inputs/Day3.txt"
     val alphabetArr: CharArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray()
     var endVal1 = 0
     var endVal2 = 0
     var index = 0
     var threeLinesArr = Array<String>(3){""}
 
-    val lines: List<String> =
-        (readLines("/home/mioshek/Programming_Stuff/Programming/Advent_of_code/2022/inputs/Day3.txt"))
+    val lines: List<String> = (readLines(cpath))
     val begin = System.nanoTime()
     for (line in lines) {
-        endVal1 += partOne(line, alphabetArr)
+        endVal1 += solution(line, alphabetArr)
 
         if (index % 3 ==2){
             threeLinesArr[index%3] = line
