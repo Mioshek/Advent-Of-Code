@@ -45,100 +45,56 @@ class RopeTextArea(var area: Array<Array<Point?>>): JTextArea(){
 
 }
 
-class EventListener(private var ropeArea: RopeTextArea, var point: Point) :  KeyListener {
+class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  KeyListener {
 
+    val arr = ropeArea.area
     override fun keyTyped(typed: KeyEvent?) {
+    }
+
+    fun relocatePoints(){
+        arr[head.row][head.col] = head
+        var p = head
+        while (true){
+            val next = p.next ?: break
+            arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
+            p.moveTail()
+//            println("row: ${p.row}, ${p.col}")
+            val tailInArr = arr[p.next?.row!!][p?.next!!.col]
+            if (tailInArr?.symbol == '.'){
+//                println("equals . in a")
+                arr[p.next!!.row][p.next!!.col] = p.next
+            }
+            p = p.next!!
+        }
+//            println("nr ${p.next?.row} cr ${p.next?.col}")
+//            println("r ${p.row} c ${p.col}")
+        ropeArea.updateRopeArea(arr)
     }
 
     override fun keyPressed(press: KeyEvent?) {
         if (press?.keyChar == 'a'){
-            var arr = ropeArea.area
-            var head = point
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveLeft()
-            arr[head.row][head.col] = head
-            var p = head
-            while (p.next != null){
-                arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
-                val newTail = p.moveTail()
-                println("row: ${newTail.row}, ${newTail.col}")
-                val tailInArr = arr[newTail.next?.row!!][newTail?.next!!.col]
-                if (tailInArr?.symbol == '.'){
-                    println("equals . in a")
-                    arr[newTail.next!!.row][newTail.next!!.col] = newTail.next
-                }
-                p = newTail.next!!
-            }
-//            println("nr ${p.next?.row} cr ${p.next?.col}")
-//            println("r ${p.row} c ${p.col}")
-            ropeArea.updateRopeArea(arr)
+            relocatePoints()
+
         }
         else if (press?.keyChar == 'w'){
-            var arr = ropeArea.area
-            val head = point
+            val head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveUp()
-            arr[head.row][head.col] = head
-            var p = head
-            while (p.next != null){
-                arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
-                val newTail = p.moveTail()
-                println("row: ${newTail.row}, ${newTail.col}")
-                val tailInArr = arr[newTail.next?.row!!][newTail?.next!!.col]
-                if (tailInArr?.symbol == '.'){
-                    println("equals . in w")
-                    arr[newTail.next!!.row][newTail.next!!.col] = newTail.next
-                }
-                p = newTail.next!!
-            }
-//            println("nr ${p.next?.row} cr ${p.next?.col}")
-//            println("r ${p.row} c ${p.col}")
-            ropeArea.updateRopeArea(arr)
+            relocatePoints()
         }
         else if (press?.keyChar == 's'){
-            var arr = ropeArea.area
-            var head = point
+            var head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveDown()
-            arr[head.row][head.col] = head
-            var p = head
-            while (p.next != null){
-                arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
-                val newTail = p.moveTail()
-                println("row: ${newTail.row}, ${newTail.col}")
-                val tailInArr = arr[newTail.next?.row!!][newTail?.next!!.col]
-                if (tailInArr?.symbol == '.'){
-                    println("equals . in s")
-                    arr[newTail.next!!.row][newTail.next!!.col] = newTail.next
-                }
-                p = newTail.next!!
-            }
-//            println("nr ${p.next?.row} cr ${p.next?.col}")
-//            println("r ${p.row} c ${p.col}")
-            ropeArea.updateRopeArea(arr)
+            relocatePoints()
         }
         else if (press?.keyChar == 'd'){
-            var arr = ropeArea.area
-            var head = point
+            var head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveRight()
-            arr[head.row][head.col] = head
-            var p = head
-            while (p.next != null){
-                arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
-                val newTail = p.moveTail()
-                println("row: ${newTail.row}, ${newTail.col}")
-                val tailInArr = arr[newTail.next?.row!!][newTail?.next!!.col]
-                if (tailInArr?.symbol == '.'){
-                    println("equals . in d")
-                    arr[newTail.next!!.row][newTail.next!!.col] = newTail.next
-                }
-
-                p = newTail.next!!
-            }
-//            println("nr ${p.next?.row} cr ${p.next?.col}")
-//            println("r ${p.row} c ${p.col}")
-            ropeArea.updateRopeArea(arr)
+            relocatePoints()
         }
     }
 
@@ -152,15 +108,15 @@ class RopeFrame(var area: Array<Array<Point?>>): Frame(){
     init {
         val row = Random.nextInt(29)
         val col = Random.nextInt(29)
-        val tailPoint8 = Point(row, col, 'T', null)
-        val tailPoint7 = Point(row, col, 'T', tailPoint8)
-        val tailPoint6 = Point(row, col, 'T', tailPoint7)
-        val tailPoint5 = Point(row, col, 'T', tailPoint6)
-        val tailPoint4 = Point(row, col, 'T', tailPoint5)
-        val tailPoint3 = Point(row, col, 'T', tailPoint4)
-        val tailPoint2 = Point(row, col, 'T', tailPoint3)
-        val tailPoint1 = Point(row, col, 'T', tailPoint2)
-        val headPoint = Point(row, col, 'H', tailPoint1)
+        val tailPoint8 = Point(row, col, '8', null)
+        val tailPoint7 = Point(row, col, '7', tailPoint8)
+        val tailPoint6 = Point(row, col, '6', tailPoint7)
+        val tailPoint5 = Point(row, col, '5', tailPoint6)
+        val tailPoint4 = Point(row, col, '4', tailPoint5)
+        val tailPoint3 = Point(row, col, '3', tailPoint4)
+        val tailPoint2 = Point(row, col, '2', tailPoint3)
+        val tailPoint1 = Point(row, col, '1', tailPoint2)
+        val headPoint = Point(row, col, '0', tailPoint1)
         this.area[row][col] = headPoint
         this.ropeArea = RopeTextArea(area)
         this.addWindowListener(RopeAdapter())

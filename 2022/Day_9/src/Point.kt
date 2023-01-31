@@ -9,74 +9,56 @@ class Point(var row: Int, var col: Int, var symbol: Char, var next: Point?){
         this.next = next
     }
 
-    fun moveUp(): Point? {
+    fun moveUp(){
         this.row --
-        return this
     }
-    private fun moveUpRight(): Point? {
+    private fun moveUpRight(){
         this.row --
         this.col ++
-        return this
     }
-    fun moveRight(): Point? {
+    fun moveRight(){
         this.col ++
-        return this
     }
-    private fun moveDownRight(): Point? {
+    private fun moveDownRight(){
         this.row ++
         this.col ++
-        return this
     }
-    fun moveDown(): Point? {
+    fun moveDown(){
         this.row ++
-        return this
     }
-    private fun moveDownLeft(): Point? {
+    private fun moveDownLeft(){
         this.row ++
         this.col --
-        return this
     }
-    fun moveLeft(): Point? {
+    fun moveLeft(){
         this.col --
-        return this
     }
-    private fun moveUpLeft(): Point? {
+    private fun moveUpLeft(){
         this.row --
         this.col --
-        return this
     }
 
-    fun moveTail(): Point{
+    private fun moveTailDiagonally(){
+        if (this.row > this.next?.row!! && this.col > this.next?.col!!){
+            this.next?.moveDownRight()
+        }
+        else if (this.row < this.next?.row!! && this.col > this.next?.col!!){
+            this.next?.moveUpRight()
+        }
+        else if (this.row > this.next?.row!! && this.col < this.next?.col!!){
+            this.next?.moveDownLeft()
+        }
+        else if (this.row < this.next?.row!! && this.col < this.next?.col!!){
+            this.next?.moveUpLeft()
+        }
+    }
+    fun moveTail(){
 
         if (abs(this.row - this.next!!.row) == 1 && abs(this.col - this.next?.col!!) > 1){
-            if (this.row > this.next?.row!! && this.col > this.next?.col!!){
-                this.next?.moveDownRight()
-            }
-            else if (this.row < this.next?.row!! && this.col > this.next?.col!!){
-                this.next?.moveUpRight()
-            }
-            else if (this.row > this.next?.row!! && this.col < this.next?.col!!){
-                this.next?.moveDownLeft()
-            }
-            else if (this.row < this.next?.row!! && this.col < this.next?.col!!){
-                this.next?.moveUpLeft()
-            }
-            return this
+            moveTailDiagonally()
         }
         else if (abs(this.row - this.next?.row!!) > 1 && abs(this.col - this.next?.col!!) == 1){
-            if (this.row > this.next?.row!! && this.col > this.next?.col!!){
-                this.next?.moveDownRight()
-            }
-            else if (this.row < this.next?.row!! && this.col > this.next?.col!!){
-                this.next?.moveUpRight()
-            }
-            else if (this.row > this.next?.row!! && this.col < this.next?.col!!){
-                this.next?.moveDownLeft()
-            }
-            else if (this.row < this.next?.row!! && this.col < this.next?.col!!){
-                this.next?.moveUpLeft()
-            }
-            return this
+            moveTailDiagonally()
         }
         else if (abs(this.row - this.next?.row!!) > 1){
             if (this.row > next?.row!!){
@@ -85,7 +67,6 @@ class Point(var row: Int, var col: Int, var symbol: Char, var next: Point?){
             else{
                 this.next?.moveUp()
             }
-            return this
         }
         else if (abs(this.col - next?.col!!) > 1) {
             if (this.col > next?.col!!) {
@@ -94,9 +75,7 @@ class Point(var row: Int, var col: Int, var symbol: Char, var next: Point?){
             else {
                 this.next?.moveLeft()
             }
-            return this
         }
-        return this
     }
 
 }
