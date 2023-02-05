@@ -14,14 +14,13 @@ class RopeAdapter: WindowAdapter(){
     }
 }
 
-class RopeTextArea(var area: Array<Array<Point?>>): JTextArea(){
+class RopeTextArea(var area: Array<Array<Point?>>,rows: Int, cols: Int): JTextArea(){
     init {
-        this.area = area
         this.area = area
         this.foreground = Color.white
         this.background = Color.darkGray
-        this.rows = 30
-        this.columns = 30
+        this.rows = rows
+        this.columns = cols
         this.font = Font("consolas", Font.BOLD, 35)
         this.text = convertToString(this.area)
         this.isFocusable = false
@@ -103,22 +102,15 @@ class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  Key
     }
 }
 
-class RopeFrame(var area: Array<Array<Point?>>): Frame(){
+class RopeFrame(var area: Array<Array<Point?>>, rows: Int, cols: Int): Frame(){
     var ropeArea: RopeTextArea
     init {
         val row = Random.nextInt(29)
         val col = Random.nextInt(29)
-        val tailPoint8 = Point(row, col, '8', null)
-        val tailPoint7 = Point(row, col, '7', tailPoint8)
-        val tailPoint6 = Point(row, col, '6', tailPoint7)
-        val tailPoint5 = Point(row, col, '5', tailPoint6)
-        val tailPoint4 = Point(row, col, '4', tailPoint5)
-        val tailPoint3 = Point(row, col, '3', tailPoint4)
-        val tailPoint2 = Point(row, col, '2', tailPoint3)
-        val tailPoint1 = Point(row, col, '1', tailPoint2)
-        val headPoint = Point(row, col, '0', tailPoint1)
+        val tailPoint1 = Point(row, col, 'T', null)
+        val headPoint = Point(row, col, 'H', tailPoint1)
         this.area[row][col] = headPoint
-        this.ropeArea = RopeTextArea(area)
+        this.ropeArea = RopeTextArea(area, rows, cols )
         this.addWindowListener(RopeAdapter())
         this.addKeyListener(EventListener(ropeArea, headPoint))
         this.add(ropeArea)
