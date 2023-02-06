@@ -21,7 +21,7 @@ class RopeTextArea(var area: Array<Array<Point?>>,rows: Int, cols: Int): JTextAr
         this.background = Color.darkGray
         this.rows = rows
         this.columns = cols
-        this.font = Font("consolas", Font.BOLD, 35)
+        this.font = Font("consolas", Font.BOLD, 30)
         this.text = convertToString(this.area)
         this.isFocusable = false
     }
@@ -50,50 +50,37 @@ class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  Key
     override fun keyTyped(typed: KeyEvent?) {
     }
 
-    fun relocatePoints(){
-        arr[head.row][head.col] = head
-        var p = head
-        while (true){
-            val next = p.next ?: break
-            arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
-            p.moveTail()
-//            println("row: ${p.row}, ${p.col}")
-            val tailInArr = arr[p.next?.row!!][p?.next!!.col]
-            if (tailInArr?.symbol == '.'){
-//                println("equals . in a")
-                arr[p.next!!.row][p.next!!.col] = p.next
-            }
-            p = p.next!!
-        }
-//            println("nr ${p.next?.row} cr ${p.next?.col}")
-//            println("r ${p.row} c ${p.col}")
-        ropeArea.updateRopeArea(arr)
+    fun update(){
+        val nArr = Rope.relocatePoints(head, arr)
+        ropeArea.updateRopeArea(nArr)
     }
+
+
 
     override fun keyPressed(press: KeyEvent?) {
         if (press?.keyChar == 'a'){
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveLeft()
-            relocatePoints()
+            update()
 
         }
         else if (press?.keyChar == 'w'){
             val head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveUp()
-            relocatePoints()
+            update()
         }
         else if (press?.keyChar == 's'){
             var head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveDown()
-            relocatePoints()
+            update()
         }
         else if (press?.keyChar == 'd'){
             var head = head
             arr[head.row][head.col] = Point(head.row, head.col, '.', null)
             head.moveRight()
-            relocatePoints()
+            update()
         }
     }
 
@@ -105,14 +92,23 @@ class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  Key
 class RopeFrame(var area: Array<Array<Point?>>, rows: Int, cols: Int): Frame(){
     var ropeArea: RopeTextArea
     init {
-        val row = Random.nextInt(29)
-        val col = Random.nextInt(29)
-        val tailPoint1 = Point(row, col, 'T', null)
-        val headPoint = Point(row, col, 'H', tailPoint1)
-        this.area[row][col] = headPoint
+        val row = Random.nextInt(39)
+        val col = Random.nextInt(39)
+
+        val tailPoint9 = Point(row, col, '9', null)
+        val tailPoint8 = Point(row, col, '8', tailPoint9)
+        val tailPoint7 = Point(row, col, '7', tailPoint8)
+        val tailPoint6 = Point(row, col, '6', tailPoint7)
+        val tailPoint5 = Point(row, col, '5', tailPoint6)
+        val tailPoint4 = Point(row, col, '4', tailPoint5)
+        val tailPoint3 = Point(row, col, '3', tailPoint4)
+        val tailPoint2 = Point(row, col, '2', tailPoint3)
+        val tailPoint1 = Point(row, col, '1', tailPoint2)
+        val headPointH = Point(row, col, 'H', tailPoint1)
+        this.area[row][col] = headPointH
         this.ropeArea = RopeTextArea(area, rows, cols )
         this.addWindowListener(RopeAdapter())
-        this.addKeyListener(EventListener(ropeArea, headPoint))
+        this.addKeyListener(EventListener(ropeArea, headPointH))
         this.add(ropeArea)
         this.minimumSize = Dimension(1300, 1300)
         this.isVisible = true
