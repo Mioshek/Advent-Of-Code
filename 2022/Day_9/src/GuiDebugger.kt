@@ -45,13 +45,13 @@ class RopeTextArea(var area: Array<Array<Point?>>,rows: Int, cols: Int): JTextAr
 }
 
 class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  KeyListener {
-
+    var rope = Rope()
     val arr = ropeArea.area
     override fun keyTyped(typed: KeyEvent?) {
     }
 
     fun update(){
-        val nArr = Rope.relocatePoints(head, arr)
+        val nArr = rope.relocatePoints(head, arr)
         ropeArea.updateRopeArea(nArr)
     }
 
