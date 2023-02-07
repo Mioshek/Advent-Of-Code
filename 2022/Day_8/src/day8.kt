@@ -66,13 +66,14 @@ class Ascending(private val row: Int, private val col: Int, private val grid: Ar
 
 fun main() {
     val cpath = System.getProperty("user.dir") + "/2022/inputs/Day8.txt"
-    val beginTime = System.nanoTime()
+
     val lines = readLines(cpath)
     val height = lines.size
     val width = lines[0].length
     val forest = Array(height) { IntArray(width) }
     var partOne = 0
     val partTwo = arrayListOf<Int>()
+    val beginTime = System.nanoTime()
 
     for (row in 0 until height){
         for (col in 0 until width){
