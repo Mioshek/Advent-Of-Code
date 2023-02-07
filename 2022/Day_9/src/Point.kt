@@ -60,6 +60,9 @@ class Point(var row: Int, var col: Int, var symbol: Char, var next: Point?){
         else if (abs(this.row - this.next?.row!!) > 1 && abs(this.col - this.next?.col!!) == 1){
             moveTailDiagonally()
         }
+        else if (abs(this.row - this.next?.row!!) > 1 && abs(this.col - this.next?.col!!) > 1){
+            moveTailDiagonally()
+        }
         else if (abs(this.row - this.next?.row!!) > 1){
             if (this.row > next?.row!!){
                 this.next?.moveDown()
@@ -77,5 +80,4 @@ class Point(var row: Int, var col: Int, var symbol: Char, var next: Point?){
             }
         }
     }
-
 }

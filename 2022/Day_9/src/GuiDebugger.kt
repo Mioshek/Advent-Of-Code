@@ -41,21 +41,18 @@ class RopeTextArea(var area: Array<Array<Point?>>,rows: Int, cols: Int): JTextAr
         }
         return str
     }
-
 }
 
 class EventListener(private var ropeArea: RopeTextArea, val head: Point,) :  KeyListener {
     var rope = Rope()
     val arr = ropeArea.area
-    override fun keyTyped(typed: KeyEvent?) {
-    }
+
+    override fun keyTyped(typed: KeyEvent?) {}
 
     fun update(){
         val nArr = rope.relocatePoints(head, arr)
         ropeArea.updateRopeArea(nArr)
     }
-
-
 
     override fun keyPressed(press: KeyEvent?) {
         if (press?.keyChar == 'a'){
@@ -101,7 +98,7 @@ class RopeFrame(var area: Array<Array<Point?>>, rows: Int, cols: Int): Frame(){
         val tailPoint6 = Point(row, col, '6', tailPoint7)
         val tailPoint5 = Point(row, col, '5', tailPoint6)
         val tailPoint4 = Point(row, col, '4', tailPoint5)
-        val tailPoint3 = Point(row, col, '3', tailPoint4)
+        val tailPoint3 = Point(row, col, '3', tailPoint4) // Only for debugging
         val tailPoint2 = Point(row, col, '2', tailPoint3)
         val tailPoint1 = Point(row, col, '1', tailPoint2)
         val headPointH = Point(row, col, 'H', tailPoint1)

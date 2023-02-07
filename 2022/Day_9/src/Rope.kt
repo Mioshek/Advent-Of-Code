@@ -17,15 +17,13 @@ class Rope {
             arr[p.next!!.row][p.next!!.col] = Point(p.next!!.row, p.next!!.col, '.', null)
             lastPointVisited = arrayOf(p.next!!.row, p.next!!.col)
             p.moveTail()
-//           println("row: ${p.row}, ${p.col}")
             val tailInArr = arr[p.next?.row!!][p?.next!!.col]
             if (tailInArr?.symbol == '.') {
                 arr[p.next!!.row][p.next!!.col] = p.next
             }
             p = p.next!!
         }
-//       println("nr ${p.next?.row} cr ${p.next?.col}")
-//       println("r ${p.row} c ${p.col}")
+
         val strValue = "${lastPointVisited[0]}${lastPointVisited[1]}"
         if (strValue !in allPoints){
             allPoints.add(strValue)

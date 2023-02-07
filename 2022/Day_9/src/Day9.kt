@@ -1,24 +1,20 @@
-import kotlin.reflect.typeOf
-
-//fun changeTail(area: Array<Array<Point?>>, head: Point): CheckPoint {
-//    area[head.row][head.col] = head
-//    area[head.next!!.row][head.next!!.col] = Point(head.next!!.row, head.next!!.col, '.', null)
-//    head.moveTail()
-//    val tailInArr = area[head.next?.row!!][head?.next!!.col]
-//    if (tailInArr?.symbol == '.'){
-//        area[head.next!!.row][head.next!!.col] = head.next!!
-//    }
-//    return CheckPoint(head.next!!.row, head.next!!.col)
-//}
-
 fun main(args: Array<String>) {
     val cpath = System.getProperty("user.dir") + "/2022/inputs/Day9.txt"
     val beginTime = System.nanoTime()
     val lines = readLines(cpath)
-    val area = Area(1000, 1000)
-//    val gui = RopeFrame(area.area, 40, 40)
-    val partOne = PartOne(area)
-    println(partOne.loop(lines))
+    var debug = false
+
+    if (debug){
+        val area = Area(40, 40)
+        val gui = RopeFrame(area.area, 40, 40)
+    }
+    else{
+        val area = Area(1000, 1000)
+        val partOne = PartOne(area)
+        println(partOne.loop(lines))
+    }
+    val endTime = System.nanoTime()
+    println("Elapsed time in microseconds: ${(endTime-beginTime)/1000}")
 }
 
 class CheckPoint(val row: Int, val col: Int){
@@ -41,15 +37,15 @@ class Area (width: Int, height: Int) {
 
 class PartOne (var area: Area){
     var partOne = arrayListOf<String>()
-    private val tailPoint9 = Point(500, 500, '9', null)
-    private val tailPoint8 = Point(500, 500, '8', tailPoint9)
-    private val tailPoint7 = Point(500, 500, '7', tailPoint8)
-    private val tailPoint6 = Point(500, 500, '6', tailPoint7)
-    private val tailPoint5 = Point(500, 500, '5', tailPoint6)
-    private val tailPoint4 = Point(500, 500, '4', tailPoint5)
-    private val tailPoint3 = Point(500, 500, '3', tailPoint4)
-    private val tailPoint2 = Point(500, 500, '2', tailPoint3)
-    private val tailPoint1 = Point(500, 500, '1', tailPoint2)
+//    private val tailPoint9 = Point(500, 500, '9', null)
+//    private val tailPoint8 = Point(500, 500, '8', tailPoint9)
+//    private val tailPoint7 = Point(500, 500, '7', tailPoint8)
+//    private val tailPoint6 = Point(500, 500, '6', tailPoint7)
+//    private val tailPoint5 = Point(500, 500, '5', tailPoint6) // if uncommented and tailPoint.next = tailPoint2 then part 2
+//    private val tailPoint4 = Point(500, 500, '4', tailPoint5)
+//    private val tailPoint3 = Point(500, 500, '3', tailPoint4)
+//    private val tailPoint2 = Point(500, 500, '2', tailPoint3)
+    private val tailPoint1 = Point(500, 500, '1', null)
     private val head = Point(500, 500, 'H', tailPoint1)
     private var rope = Rope()
 
@@ -85,6 +81,6 @@ class PartOne (var area: Area){
 
             }
         }
-        return rope.allPoints.size //fixed
+        return rope.allPoints.size +1 //fixed
     }
 }
