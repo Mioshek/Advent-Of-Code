@@ -3,7 +3,21 @@ import java.lang.Exception
 import java.util.Objects
 import kotlin.math.abs
 
-open class Particle(var y: Int, var x: Int){
+open class Particle{
+    var y: Int
+    var x: Int
+    var deadEnd: Boolean
+    constructor(y: Int,  x: Int){
+        this.y = y
+        this.x = x
+        this.deadEnd = false
+    }
+
+    constructor(){
+        this.y = 0
+        this.x = 0
+        this.deadEnd = true
+    }
 
     fun equals(particle: Particle) : Boolean{
         return this.y == particle.y && this.x == particle.x
@@ -63,18 +77,28 @@ class PathParticle(y: Int,
 }
 
 
-class Astar(private val field: Field) {
-    private var currentParticle = field.startParticle
+class Astar(var field: Field,
+            var gui: GuiFrame? = null,
+            var guiDebugger: Boolean = false) {
+
+    constructor(field: Field,  gui: GuiFrame): this(field){
+        this.field = field
+        this.gui = gui
+        this.guiDebugger = true
+    }
+
+    private var currentParticle = this.field.startParticle
     private var closed = mutableSetOf(this.field.startParticle)
     private var available = mutableSetOf<PathParticle>()
 
-    suspend fun findPath(gui: GuiFrame): PathParticle? {
+    fun findPath(): PathParticle? {
         while (this.currentParticle?.equals(PathParticle.END) == false){
             this.currentParticle = this.findNextPoint()
+            if (this.currentParticle!!.origin == null){
+                return this.currentParticle
+            }
             this.closed.add(this.currentParticle)
             this.available.remove(this.currentParticle)
-            delay(1L)
-            gui.hillArea.addHighlight(this.currentParticle!!.y, this.currentParticle!!.x)
         }
         return this.currentParticle
     }
@@ -115,7 +139,8 @@ class Astar(private val field: Field) {
             this.processNeighbour(pp, this.currentParticle!!)
         }
         if (this.available.size == 0){
-            throw Exception("No available nodes to proceed")
+            return PathParticle(0, 0 , '0', null)
+
         }
         var min = 100_000
         var minParticle = PathParticle(0,0,'0', field.startParticle!!)

@@ -18,16 +18,14 @@ class HillClimbingAdapter: WindowAdapter(){
 class HillClimbingArea(private var area: Array<Array<PathParticle>>): JTextPane(){
     private val greenPainter = DefaultHighlightPainter(Color.GREEN)
     private val redPainter = DefaultHighlightPainter(Color.RED)
+    private val guiWidth = area[1].size * 2 +1
 
     init {
         this.foreground = Color.white
         this.background = Color.black
         this.font = Font("consolas", Font.BOLD, 13)
         this.text = convertToStrArr(this.area)
-//        this.text = "<font color=\"#9900FF\"> Welcome to freeCodeCamp. </font>"
-//        this.contentType = "text/html"
         this.isFocusable = false
-//
     }
 
     private fun convertToStrArr(arr: Array<Array<PathParticle>>): String {
@@ -43,11 +41,11 @@ class HillClimbingArea(private var area: Array<Array<PathParticle>>): JTextPane(
     }
 
     fun addHighlight(y: Int, x: Int){
-        this.highlighter.addHighlight((y*343)+ x*2, (y*343)+ x*2+1, greenPainter)
+        this.highlighter.addHighlight((y*guiWidth)+ x*2, (y*guiWidth)+ x*2+1, greenPainter)
     }
 
     fun addHighlightPath(y: Int, x: Int){
-        this.highlighter.addHighlight((y*343)+ x*2, (y*343)+ x*2+1, redPainter)
+        this.highlighter.addHighlight((y*guiWidth)+ x*2, (y*guiWidth)+ x*2+1, redPainter)
     }
 }
 
