@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 suspend fun main(){
     val guiDebugger = true
     val showProgress = true
+    val resizable = false
     val inputFile = System.getProperty("user.dir") + "/2022/inputs/Day12.txt"
     val lines = readLines(inputFile)
     val height = lines.size
@@ -14,7 +15,7 @@ suspend fun main(){
     var gui: GuiFrame?
     var a: Astar
     if (guiDebugger){
-        gui = GuiFrame(field.field)
+        gui = GuiFrame(field.field, resizable)
         a = Astar(field, gui)
     }
     else{

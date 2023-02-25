@@ -2,6 +2,7 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Font
 import java.awt.Frame
+import java.awt.Toolkit
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import javax.swing.JTextPane
@@ -15,15 +16,16 @@ class HillClimbingAdapter: WindowAdapter(){
     }
 }
 
-class HillClimbingArea(private var area: Array<Array<PathParticle>>): JTextPane(){
+class HillClimbingArea(private var area: Array<Array<PathParticle>>, minimumSize: Dimension): JTextPane(){
     private val greenPainter = DefaultHighlightPainter(Color.GREEN)
     private val redPainter = DefaultHighlightPainter(Color.RED)
     private val guiWidth = area[1].size * 2 +1
 
     init {
+        println(minimumSize.width)
         this.foreground = Color.white
         this.background = Color.black
-        this.font = Font("consolas", Font.BOLD, 13)
+        this.font = Font("consolas", Font.BOLD, minimumSize.width/185)
         this.text = convertToStrArr(this.area)
         this.isFocusable = false
     }
@@ -49,13 +51,22 @@ class HillClimbingArea(private var area: Array<Array<PathParticle>>): JTextPane(
     }
 }
 
-class GuiFrame(area: Array<Array<PathParticle>>): Frame() {
-    var hillArea: HillClimbingArea = HillClimbingArea(area)
+class GuiFrame(area: Array<Array<PathParticle>>, private val resizable: Boolean): Frame() {
+    private val dimensions = getCustomDimensions()
+    var hillArea = HillClimbingArea(area, dimensions)
 
     init{
+        this.minimumSize = dimensions
+        this.isVisible = true
         this.addWindowListener(HillClimbingAdapter())
         this.add(hillArea)
-        this.minimumSize = Dimension(800, 2000)
-        this.isVisible = true
+
     }
+
+    private fun getCustomDimensions(): Dimension {
+        val screenSize = Toolkit.getDefaultToolkit().screenSize
+        this.isResizable = resizable
+        return Dimension(screenSize.width, screenSize.height/2)
+    }
+
 }
