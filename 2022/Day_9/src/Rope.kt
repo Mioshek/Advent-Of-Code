@@ -1,5 +1,3 @@
-import java.io.Serializable
-
 class Rope {
     var lastPointVisited = Array<Int>(2) { 0 }
     var allPoints = ArrayList<String>()
@@ -29,7 +27,6 @@ class Rope {
             allPoints.add(strValue)
         }
         return arr
-        }
+    }
 
 }
-

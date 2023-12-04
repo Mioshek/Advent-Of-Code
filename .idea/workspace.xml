@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1ae1bfe-8ae4-4961-b4d4-bb642b5518b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/2022/Day_10/src/Day10.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_10/src/Day10.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/Day_12/src/Day12.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_12/src/Day12.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/Day_12/src/Gui.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_12/src/Gui.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/Day_7/src/Day7.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_7/src/Day7.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/Day_9/src/Day9.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_9/src/Day9.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/Day_9/src/Rope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/Day_9/src/Rope.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Script" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/2022/inputs/Day10.txt" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="9bu27jus" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2KVucLOLsrZTZ6VQCuTaqpyGV7d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/mioshek/Programming_Stuff/Programming/Java/SzkolenieTechniczne",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/2022/Day_9/src" />
+      <recent name="$PROJECT_DIR$/2022/Day_9" />
+      <recent name="$PROJECT_DIR$/2022/Day_8/src" />
+      <recent name="$PROJECT_DIR$/2022/Day_7/src" />
+      <recent name="$PROJECT_DIR$/2022/Day_4/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Day9Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day9Kt" />
+      <module name="Advent_of_code" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.Day9Kt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="/usr/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1ae1bfe-8ae4-4961-b4d4-bb642b5518b2" name="Changes" comment="" />
+      <created>1674072149067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674072149067</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Advent_of_code$Day7Kt.ic" NAME="Day7Kt Coverage Results" MODIFIED="1674942925917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

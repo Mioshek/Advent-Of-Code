@@ -25,7 +25,7 @@ class HillClimbingArea(private var area: Array<Array<PathParticle>>, minimumSize
         println(minimumSize.width)
         this.foreground = Color.white
         this.background = Color.black
-        this.font = Font("consolas", Font.BOLD, minimumSize.width/185)
+        this.font = Font("consolas", Font.BOLD, minimumSize.width/190)
         this.text = convertToStrArr(this.area)
         this.isFocusable = false
     }
@@ -60,13 +60,13 @@ class GuiFrame(area: Array<Array<PathParticle>>, private val resizable: Boolean)
         this.isVisible = true
         this.addWindowListener(HillClimbingAdapter())
         this.add(hillArea)
-
     }
 
     private fun getCustomDimensions(): Dimension {
         val screenSize = Toolkit.getDefaultToolkit().screenSize
         this.isResizable = resizable
-        return Dimension(screenSize.width, screenSize.height/2)
+        val ratio = screenSize.width/screenSize.height
+        return Dimension(screenSize.width, screenSize.height/ratio)
     }
 
 }

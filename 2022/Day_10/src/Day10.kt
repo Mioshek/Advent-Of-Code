@@ -1,8 +1,8 @@
 
 fun main(){
     val cpath = System.getProperty("user.dir") + "/2022/inputs/Day10.txt"
-    val beginTime = System.nanoTime()
     val lines = readLines(cpath)
+    val beginTime = System.nanoTime()
     val p1 = Part1()
     val p2 = Part2()
 

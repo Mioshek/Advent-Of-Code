@@ -37,7 +37,7 @@ class Area (width: Int, height: Int) {
 
 class PartOne (var area: Area){
     var partOne = arrayListOf<String>()
-//    private val tailPoint9 = Point(500, 500, '9', null)
+    //    private val tailPoint9 = Point(500, 500, '9', null)
 //    private val tailPoint8 = Point(500, 500, '8', tailPoint9)
 //    private val tailPoint7 = Point(500, 500, '7', tailPoint8)
 //    private val tailPoint6 = Point(500, 500, '6', tailPoint7)
